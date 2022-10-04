@@ -4,36 +4,29 @@ using UnityEngine;
 
 public class Destruction : MonoBehaviour
 {
-    public GameObject gameObject;
-    public GameObject Bird1;
-    public Score scr;
+    public GameObject enemy;
+    private GameObject bird;
+    public GameObject score;
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        bird = GameObject.FindWithTag("Player");
     }
 
     void OnCollisionEnter2D(Collision2D col)
     {
         Debug.Log(col.gameObject.name);
-        Destroy(Bird1, 5);
-        col.gameObject.SetActive(false);
-        gameObject.SetActive(true);
-        if(col.gameObject.name == "darkWood")
+        Destroy(bird, 5);
+        if(col.gameObject == bird)
         {
-            scr.score += 5;
-            scr.scoreIncrease();
-        }
-        if(col.gameObject.name == "Enemy")
-        {
-            scr.score += 10;
-            scr.scoreIncrease();
+            enemy.SetActive(false);
+            /*score.scoreIncrease();*/
         }
     }
 }
